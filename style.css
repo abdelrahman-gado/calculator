@@ -1,0 +1,109 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #12D0ED;
+}
+
+.main {
+    width: 50%;
+    height: 70%;
+    border: 5px solid black;
+    border-radius: 10px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main .text-area-container {
+    width: 100%;
+    height: 20%;
+    border: 3px solid black;
+    border-radius: 10px;
+    text-align: right;
+}
+
+.txt {
+    background-color: white;
+    width: 100%;
+    padding: 8px;
+}
+
+.previous-txt {
+    height: 40%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    font-size: 18px;
+}
+
+.current-txt {
+    height: 60%;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    font-size: 32px;
+}
+
+.clr-del-container {
+    width: 100%;
+    height: 10%;
+    margin: 16px 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+.clr-del-container .clr-del-btn{
+    width: 40%;
+    border: 2px solid black;
+    border-radius: 8px;
+    font-size: 24px;
+}
+
+.clr-del-container .clr-del-btn:active {
+    background-color: cadetblue;
+}
+
+.num-op-conatiner {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-rows: repeat(4, 1fr);
+    grid-template-columns: repeat(4, 1fr);
+    justify-items: center;
+    align-items: center;
+    border: 1px solid black;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.num-op-conatiner .btn {
+    width: 80%;
+    height: 80%;
+    font-size: 28px;
+    border: 3px solid black;
+    border-radius: 16px;
+}
+
+.num-op-conatiner .num-btn:active {
+    background-color: #1262ED;
+}
+
+.num-op-conatiner .op-btn:active {
+    background-color: #ED9D12;
+}
+
+.equal-btn {
+    background-color: crimson;
+}
