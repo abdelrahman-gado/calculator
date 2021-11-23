@@ -7,6 +7,7 @@ function operate(firstOperand, operator, secondOperand) {
         case "x":
             return firstOperand * secondOperand;
         case "/":
+            if (secondOperand === 0) return "ERROR"
             return firstOperand / secondOperand;
         default:
             return "no operation";
@@ -17,9 +18,20 @@ function calculate() {
     const secondOperand = parseFloat(currentDisplay.textContent);
     const operator = sequence.pop();
     const firstOperand = parseFloat(sequence.pop());
-    const result = (Math.round(operate(firstOperand, operator, secondOperand) * 100) / 100).toString();
+    const operationResult = operate(firstOperand, operator, secondOperand);
+    if (operationResult === "ERROR") return "ERROR"; 
+    const result = (Math.round(operationResult * 100) / 100).toString();
     return result;
 }
+
+function resetFloatingPointButton() {
+    // if user delete floating point, make floatingPoint button enabled
+    // to allow user type floating point again.
+    if (!currentDisplay.textContent.includes(".") && floatingPoint === true) {
+        floatingPoint = false;
+    }
+}
+
 
 function reomve() {
     if (sequence.length === 0 && currentDisplay.textContent !== "") {
@@ -51,6 +63,8 @@ function reomve() {
         // the second operand, delete digits from the second operand in the currentDisplay.
         currentDisplay.textContent = currentDisplay.textContent.slice(0, -1);
     }
+
+    resetFloatingPointButton();
 }
 
 function typeNumbers(e) {
@@ -65,6 +79,11 @@ function typeNumbers(e) {
     }
 
     currentDisplay.textContent += e.target.textContent;
+}
+
+function divideByZero() {
+    alert("ERROR:DivionByZero");
+    clear();
 }
 
 function makeOperation(e) {
@@ -93,6 +112,11 @@ function makeOperation(e) {
             // the currentDisplay must have the second operand
             // (the user must type second operator to calculate result)
             const result = calculate();
+            // if the user divide by zero
+            if (result === "ERROR") {
+                divideByZero();
+                return;
+            }
             previousDisplay.textContent = "";
             currentDisplay.textContent = result;
             sequence.push(result);
@@ -105,6 +129,11 @@ function equal() {
         // calculate result when sequence array has the first operand and operator
         // and the user type second operand in the currentDisplay
         const result = calculate();
+        // if user divide by zero
+        if (result === "ERROR") {
+            divideByZero();
+            return;
+        }
         previousDisplay.textContent = "";
         currentDisplay.textContent = result;
         sequence.push(result);
